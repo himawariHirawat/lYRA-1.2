@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import '../static/css/mdb.min.css';
+
+        #bottom-div {
+            background-color: #54c463;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .b_logo{
+            width: 50px;
+            border-radius: 50px;
+        }
+
+        .send_butt{
+            width: 17px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+            data-mdb-collapse-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+    
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+            <img
+                src="../static/logo.png"
+                alt="MDB Logo"
+                loading="lazy"
+                class="b_logo"
+            />
+            </a>
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
+            <li class="nav-item">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Projects</a>
+            </li>
+            </ul>
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+    
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+            <!-- Icon -->
+            <a class="text-reset me-3" href="#">
+            <i class="fas fa-shopping-cart"></i>
+            </a>
+    
+            <!-- Notifications -->
+            <div class="dropdown">
+            <a
+                data-mdb-dropdown-init
+                class="text-reset me-3 dropdown-toggle hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                aria-expanded="false"
+            >
+                <i class="fas fa-bell"></i>
+                <span class="badge rounded-pill badge-notification bg-danger">1</span>
+            </a>
+            <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+            >
+                <li>
+                <a class="dropdown-item" href="#">Some news</a>
+                </li>
+                <li>
+                <a class="dropdown-item" href="#">Another news</a>
+                </li>
+                <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+            </ul>
+            </div>
+            <!-- Avatar -->
+            <div class="dropdown">
+            <a
+                data-mdb-dropdown-init
+                class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuAvatar"
+                role="button"
+                aria-expanded="false"
+            >
+                <img
+                id="animated-input"
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                class="rounded-circle"
+                height="25"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"
+                />
+            </a>
+            <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuAvatar"
+            >
+                <li>
+                <a class="dropdown-item" href="#">My profile</a>
+                </li>
+                <li>
+                <a class="dropdown-item" href="#">Settings</a>
+                </li>
+                <li>
+                <a class="dropdown-item" href="#">Logout</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+        <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+
+      <div class="input-group mb-3" id = "bottom-div" >
+        <span class="input-group-text border-0" id="basic-addon1"><img class="b_logo" src="../static/logo.png" alt="BOT_BABY"></span>
+        <input
+          id="query"
+          name="query()"
+          type="text"
+          class="form-control rounded"
+          placeholder="Type Something..."
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+        <button onclick="sendQuery()" class="btn btn-outline-secondary" type="button" id="button-addon2" data-mdb-ripple-init data-mdb-ripple-color="dark">
+            <img class = "send_butt" src="../static/send.png" alt="send">
+          </button>
+      </div>
+      
+      
+      
+      <script>
+        // Add animation when the input box becomes visible
+        document.addEventListener("DOMContentLoaded", function() {
+          var animatedInput = document.getElementById("animated-input");
+          animatedInput.classList.add("show");
+        });
+      </script>
+      <script>
+        function sendQuery() {
+            var query = document.getElementById('query').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/process_query', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send('query=' + query);
+        }
+    </script>
+</body>
+</html>

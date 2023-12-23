@@ -1,0 +1,24 @@
+@import './css/mdb.min.css';
+@import './css/mdb.rtl.min.css';
+
+
+
+#bottom-div {
+    background-color: #54c463;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.b_logo{
+    width: 50px;
+    border-radius: 50px;
+}
+
+.send_butt{
+    width: 17px;
+}
+
